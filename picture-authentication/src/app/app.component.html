@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+  <head> </head>
+  <body>
+    <header>
+      <h1 class="heading">Painting Authentication</h1>
+    </header>
+
+    <div class="text-center">
+      <div>
+        <h3>
+          Select a painting with the button below and then press check to
+          validate it's authenticity with an AI
+        </h3>
+      </div>
+      <div>
+        <label
+          id="paintingFileSelectorLabel"
+          for="paintingFileSelector"
+          class="btn btn-primary"
+          >Select Painting</label
+        >
+        <input
+          id="paintingFileSelector"
+          type="file"
+          (change)="onChange($event)"
+        />
+      </div>
+
+      <div [innerHtml]="msg" *ngIf="msg" class="error-message"></div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <img
+              *ngIf="this.ImageUrl != null"
+              id="paintingFile"
+              class="img-thumbnail"
+              src="{{ this.ImageUrl }}"
+              alt="..."
+            />
+          </div>
+
+          <div class="col">
+            <button
+              *ngIf="this.ImageUrl != null"
+              (click)="checkPainting()"
+              id="checkPainting"
+              class="btn btn-primary"
+            >
+              Check Painting
+            </button>
+
+            <div
+              *ngIf="this.paintingSelected"
+              class="ai-message"
+              id="message-container"
+            >
+              <div
+                *ngIf="this.authentic"
+                class="alert alert-success ai-message"
+              >
+                Detected painting: Mona Lisa. Original.
+                <button
+                  class="btn-feedback"
+                  (click)="!feedbackGiven ? selectIcon($event) : null"
+                >
+                  <mat-icon class="icon">thumb_up_alt</mat-icon>
+                </button>
+                <button
+                  class="btn-feedback"
+                  (click)="!feedbackGiven ? selectIcon($event) : null"
+                >
+                  <mat-icon class="icon" aria-hidden="true"
+                    >thumb_down_alt</mat-icon
+                  >
+                </button>
+              </div>
+              <div
+                *ngIf="!this.authentic"
+                class="alert alert-danger ai-message"
+              >
+                Detected painting: Mona Lisa. Forgery.
+                <button
+                  class="btn-feedback"
+                  (click)="!feedbackGiven ? selectIcon($event) : null"
+                >
+                  <mat-icon class="icon">thumb_up_alt</mat-icon>
+                </button>
+                <button
+                  class="btn-feedback"
+                  (click)="!feedbackGiven ? selectIcon($event) : null"
+                >
+                  <mat-icon class="icon" aria-hidden="true"
+                    >thumb_down_alt</mat-icon
+                  >
+                </button>
+              </div>
+              <div class="alert alert-info ai-message">
+                Feedback is appreciated! Give a thumbs up if the AI made a
+                correct assesment or a thumbs down if the AI was wrong.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

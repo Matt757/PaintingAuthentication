@@ -1,0 +1,56 @@
+.text-center {
+  padding-top: 1rem;
+}
+
+#paintingFileSelector {
+  display: none;
+}
+
+.error-message {
+  width: fit-content;
+}
+
+.success-message {
+  width: fit-content;
+}
+
+#message-container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.ai-message {
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+#paintingFile {
+  height: 25rem;
+  margin-top: 1rem;
+}
+
+#paintingFileSelectorLabel {
+  width: fit-content;
+}
+
+#checkPainting {
+  margin-top: 1rem;
+}
+
+.btn-feedback {
+  background-color: transparent;
+  border: 0;
+}
+
+.selected-icon {
+  color: blue;
+}
+
+.unselected-icon {
+  color: black;
+}
+
+.heading {
+  text-align: center;
+}
