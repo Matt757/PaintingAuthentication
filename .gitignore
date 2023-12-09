@@ -1,3 +1,8 @@
-/picture-authentication/.angular/
-/picture-authentication/node-modules/
-/picture-authentication/.vscode/
+/PictureAuthenticationFrontend/picture-authentication/.angular/
+/PictureAuthenticationFrontend/picture-authentication/node-modules/
+/PictureAuthenticationFrontend/picture-authentication/.vscode/
+/PictureAuthenticationBackend/PaintingAuthenticatorV1/.idea
+/PictureAuthenticationBackend/PaintingAuthenticatorV1/datasets/Painting-Authenticator-1
+/PictureAuthenticationBackend/PaintingAuthenticatorV1/datasets/Painting-Authenticator-2
+/PictureAuthenticationBackend/PaintingAuthenticatorV1/images
+/PictureAuthenticationBackend/PaintingAuthenticatorV1/__pycache__

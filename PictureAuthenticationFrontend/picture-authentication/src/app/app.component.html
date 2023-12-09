@@ -51,9 +51,10 @@
             >
               Check Painting
             </button>
+            <mat-spinner *ngIf="showSpinner"></mat-spinner>
 
             <div
-              *ngIf="this.paintingSelected"
+              *ngIf="paintingSelected"
               class="ai-message"
               id="message-container"
             >
@@ -61,7 +62,7 @@
                 *ngIf="this.authentic"
                 class="alert alert-success ai-message"
               >
-                Detected painting: Mona Lisa. Original.
+                Detected painter: {{ paintingType }}. Original.
                 <button
                   class="btn-feedback"
                   (click)="!feedbackGiven ? selectIcon($event) : null"
@@ -81,7 +82,7 @@
                 *ngIf="!this.authentic"
                 class="alert alert-danger ai-message"
               >
-                Detected painting: Mona Lisa. Forgery.
+                Detected painter: {{ paintingType }}. Forgery.
                 <button
                   class="btn-feedback"
                   (click)="!feedbackGiven ? selectIcon($event) : null"
