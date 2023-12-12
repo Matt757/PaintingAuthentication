@@ -1,3 +1,9 @@
 [submodule "yolov5"]
 	path = yolov5
 	url = https://github.com/ultralytics/yolov5
+[submodule "PictureAuthenticationBackend/PaintingAuthenticatorV2/yolov5"]
+	path = PictureAuthenticationBackend/PaintingAuthenticatorV2/yolov5
+	url = https://github.com/ultralytics/yolov5
+[submodule "PictureAuthenticationBackend/PaintingAuthenticatorV3/yolov5"]
+	path = PictureAuthenticationBackend/PaintingAuthenticatorV3/yolov5
+	url = https://github.com/ultralytics/yolov5
