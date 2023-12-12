@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FileUploadService } from './services/file-upload.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +9,17 @@ import { FileUploadService } from './services/file-upload.service';
 })
 export class AppComponent {
   // Variable to store shortLink from api response
-  shortLink: string = '';
-  loading: boolean = false; // Flag variable
   file: any; // Variable to store file
   ImageUrl: any;
-  FileImage: any;
   msg: string = '';
   authentic: boolean = false;
   paintingSelected: boolean = false;
   feedbackGiven: boolean = false;
+  paintingType: string = '';
+  showSpinner = false;
 
   // Inject service
-  constructor(private fileUploadService: FileUploadService) {}
-
-  ngOnInit(): void {}
+  constructor(private http: HttpClient) {}
 
   // On file Select
   onChange(event: any) {
@@ -42,6 +40,8 @@ export class AppComponent {
       return;
     }
 
+    this.file = event.target.files[0];
+
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
 
@@ -51,8 +51,37 @@ export class AppComponent {
   }
 
   checkPainting() {
-    this.paintingSelected = true;
-    this.authentic = true;
+    this.showSpinner = true;
+    let testData: FormData = new FormData();
+    testData.append('file_upload', this.file, this.file.name);
+    this.http
+      .post('http://127.0.0.1:5000', testData)
+      .subscribe((response: any) => {
+        this.showSpinner = false;
+        this.getPaintingType(response.result);
+      });
+  }
+
+  getPaintingType(list: any) {
+    console.log(list);
+    const paintingType = list.reduce((prev: any, current: any) => {
+      return prev.value > current.value ? prev : current;
+    });
+    console.log(paintingType);
+    switch (paintingType.key) {
+      case 'VincentVanGogh': {
+        this.paintingType = 'Van Gogh';
+        this.paintingSelected = true;
+        this.authentic = true;
+        break;
+      }
+      case 'VincentVanGoghForgeries': {
+        this.paintingType = 'Van Gogh';
+        this.paintingSelected = true;
+        this.authentic = false;
+        break;
+      }
+    }
   }
 
   selectIcon(event: any) {
